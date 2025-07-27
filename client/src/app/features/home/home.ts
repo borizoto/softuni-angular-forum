@@ -2,10 +2,11 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ThemeItem } from '../themes/theme-item/theme-item';
 import { ThemeService } from '../../core/services/themes.service';
 import { Theme } from '../../models';
+import { PostBoard } from '../posts/post-board/post-board';
 
 @Component({
 	selector: 'app-home',
-	imports: [ThemeItem],
+	imports: [ThemeItem, PostBoard],
 	templateUrl: './home.html',
 	styleUrl: './home.css',
 })
