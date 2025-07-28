@@ -3,6 +3,10 @@
         Recent posts
     </h2>
     <div>
-        <app-post-item></app-post-item>
+        @for (curPost of posts; track curPost._id) {
+        <app-post-item [post]="curPost"></app-post-item>
+        } @empty {
+            <li>There are no posts.</li>
+        }
     </div>
 </div>

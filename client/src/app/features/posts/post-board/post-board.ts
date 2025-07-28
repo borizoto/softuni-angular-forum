@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PostItem } from '../post-item/post-item';
+import { Post } from '../../../models';
+import { PostsService } from '../../../core/services/posts.service';
 
 @Component({
   selector: 'app-post-board',
@@ -7,6 +9,21 @@ import { PostItem } from '../post-item/post-item';
   templateUrl: './post-board.html',
   styleUrl: './post-board.css'
 })
-export class PostBoard {
+export class PostBoard implements OnInit {
+  posts: Post[] = [];
 
+  constructor(private postService: PostsService, private cdRef: ChangeDetectorRef) { }
+
+  ngOnInit(): void {
+    this.fetchPosts();
+  }
+
+  fetchPosts() {
+    this.postService.getAll().subscribe((posts) => {
+      this.posts = posts;
+      console.log(posts);
+
+      this.cdRef.detectChanges();
+    })
+  }
 }
