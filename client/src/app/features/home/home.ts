@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ThemeItem } from '../themes/theme-item/theme-item';
-import { ThemeService } from '../../core/services/themes.service';
 import { Theme } from '../../models';
 import { PostBoard } from '../posts/post-board/post-board';
+import { ThemeService } from '../../core/services';
 
 @Component({
 	selector: 'app-home',

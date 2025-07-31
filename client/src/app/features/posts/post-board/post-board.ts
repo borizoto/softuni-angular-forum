@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PostItem } from '../post-item/post-item';
 import { Post } from '../../../models';
-import { PostsService } from '../../../core/services/posts.service';
+import { PostsService } from '../../../core/services';
 
 @Component({
   selector: 'app-post-board',
