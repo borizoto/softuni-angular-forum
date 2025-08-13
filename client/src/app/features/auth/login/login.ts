@@ -16,6 +16,7 @@ export class Login {
   passwordError: boolean = false;
   emailErrorMessage: string = '';
   passwordErrorMessage: string = '';
+  formSubmitted: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -35,7 +36,7 @@ export class Login {
   isValidEmail(email: string): boolean {
     const regEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    return regEx.test(email)
+    return regEx.test(email);
   }
 
   validatePassword() {
@@ -60,8 +61,11 @@ export class Login {
       const response = this.authService.login(this.email, this.password);
 
       if (response) {
+        this.formSubmitted = true;
         this.router.navigate(['/home']);
       }
     }
+
+    this.formSubmitted = false;
   }
 }
