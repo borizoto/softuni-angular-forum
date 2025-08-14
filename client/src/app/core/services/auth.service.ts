@@ -63,7 +63,7 @@ export class AuthService {
             return false;
         }
 
-        const user = this._users[0];
+        const user: User = this._users[0];
         this._currentUser.set(user);
         this._isLoggedIn.set(true);
 
@@ -77,9 +77,23 @@ export class AuthService {
             return false;
         }
 
-        const user = this._users[0];
-        this._currentUser.set(user);
+        const newUser: User = {
+            _id: `${username}${Date.now()}`,
+            username,
+            email,
+            tel,
+            password,
+            created_at: Date.now().toString(),
+            updatedAt: Date.now().toString(),
+            themes: ['a'],
+            posts: ['a'],
+            __v: 1
+
+        };
+        this._currentUser.set(newUser);
         this._isLoggedIn.set(true);
+
+        localStorage.setItem('currentUser', JSON.stringify(newUser));
 
         return true;
     }
