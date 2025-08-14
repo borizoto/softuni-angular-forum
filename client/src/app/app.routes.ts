@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { noAuthGuard } from './core/guards/noAuth.guard';
 import { NotFound } from './shared/components/not-found/not-found';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -8,5 +9,6 @@ export const routes: Routes = [
     { path: 'login', loadComponent: () => import('../app/features/auth/login/login').then(comp => comp.Login), canActivate: [noAuthGuard] },
     { path: 'register', loadComponent: () => import('../app/features/auth/register/register').then(comp => comp.Register), canActivate: [noAuthGuard] },
     { path: 'themes', loadComponent: () => import('./features/themes/themes/themes').then(comp => comp.Themes) },
+    { path: ':username', loadComponent: () => import('./features/profile/profile').then(comp => comp.Profile), canActivate: [authGuard] },
     { path: '**', component: NotFound }
 ];

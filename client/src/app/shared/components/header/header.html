@@ -8,7 +8,7 @@
             <ul>
                 @if (isLoggedIn()) {
                 <li>
-                    <a href="#">{{currentUser()?.username}}'s profile</a>
+                    <a routerLink="/{{currentUser()?.username}}">{{currentUser()?.username}}'s profile</a>
                 </li>
                 <li>
                     <a routerLink="/logout" (click)="logout()">Logout</a>
@@ -33,7 +33,7 @@
                 <a routerLink="/themes">Themes</a>
             </li>
             <li>
-                <a routerLink="/themes/new">New Theme</a>
+                <a routerLink="/themes/create">New Theme</a>
             </li>
         </ul>
     </nav>
