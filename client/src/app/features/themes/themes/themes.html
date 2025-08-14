@@ -1,0 +1,15 @@
+<div class="container">
+    <main>
+        @for (curTheme of themes; track curTheme._id) {
+        <app-theme-item [theme]="curTheme"></app-theme-item>
+        } @empty {
+        <li>There are no items.</li>
+        }
+    </main>
+
+
+    <aside>
+        <app-post-board></app-post-board>
+    </aside>
+
+</div>

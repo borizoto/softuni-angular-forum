@@ -1,30 +1,15 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ThemeItem } from '../themes/theme-item/theme-item';
-import { Theme } from '../../models';
-import { PostBoard } from '../posts/post-board/post-board';
-import { ThemeService } from '../../core/services';
+import { Component, inject, } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { AuthService } from '../../core/services';
 
 @Component({
 	selector: 'app-home',
-	imports: [ThemeItem, PostBoard],
+	imports: [RouterLink],
 	templateUrl: './home.html',
 	styleUrl: './home.css',
 })
-export class Home implements OnInit {
-	themes: Theme[] = [];
+export class Home {
+	private authService = inject(AuthService);
 
-	constructor(private themeService: ThemeService, private cdRef: ChangeDetectorRef) { }
-
-	ngOnInit(): void {
-		this.fetchThemes();
-	}
-
-	fetchThemes() {
-		this.themeService.getAll().subscribe((themes) => {
-			this.themes = themes;
-			console.log(this.themes)
-
-			this.cdRef.detectChanges();
-		});
-	}
+	readonly isLoggedIn = this.authService.isLoggedIn;
 }
